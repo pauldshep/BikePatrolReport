@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+    <ScrollView
+            style="@android:style/Widget.DeviceDefault.ScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="58dp">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <!-- Heading: Trail Users Seen -->
+            <TextView
+                    android:id="@+id/tv_trail_users_seen"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/trail_users_seen"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_inc_hikers"
+                    app:layout_constraintStart_toStartOf="@+id/tv_hikers"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Hikers -->
+            <TextView
+                    android:id="@+id/tv_trail_users_seen2"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/trail_users_seen"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_inc_hikers"
+                    app:layout_constraintStart_toStartOf="@+id/tv_hikers"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/tv_hikers"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/number_hikers"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_trail_users_seen" />
+            <EditText
+                    android:id="@+id/et_num_hikers"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hikers"
+                    app:layout_constraintStart_toEndOf="@+id/tv_hikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_hikers" />
+
+            <Button
+                    android:id="@+id/btn_inc_hikers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hikers"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_hikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_hikers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_hikers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hikers"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_hikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_hikers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- Equestrians -->
+
+            <TextView
+                    android:id="@+id/tv_eques"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/number_equestrians"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hikers" />
+            <EditText
+                    android:id="@+id/et_num_eques"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_eques"
+                    app:layout_constraintStart_toEndOf="@+id/tv_eques"
+                    app:layout_constraintTop_toTopOf="@+id/tv_eques" />
+
+            <Button
+                    android:id="@+id/btn_inc_equestrians"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_eques"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_equestrians"
+                    app:layout_constraintTop_toTopOf="@+id/tv_eques"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_equestrians"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_eques"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_eques"
+                    app:layout_constraintTop_toTopOf="@+id/tv_eques"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- Bikers -->
+
+            <TextView
+                    android:id="@+id/tv_bikers"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/number_bikers"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_eques" />
+
+            <EditText
+                    android:id="@+id/et_num_bikers"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_bikers"
+                    app:layout_constraintStart_toEndOf="@+id/tv_bikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_bikers" />
+
+            <Button
+                    android:id="@+id/btn_inc_bikers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_bikers"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_hikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_bikers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_bikers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_bikers"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_bikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_bikers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- E-Bikes -->
+
+            <TextView
+                    android:id="@+id/tv_ebikers"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/number_ebikers"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_bikers" />
+
+            <EditText
+                    android:id="@+id/et_num_ebikers"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ebikers"
+                    app:layout_constraintStart_toEndOf="@+id/tv_ebikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ebikers" />
+
+            <Button
+                    android:id="@+id/btn_inc_ebikers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ebikers"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_ebikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ebikers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_ebikers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ebikers"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_ebikers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ebikers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- Anglers -->
+
+            <TextView
+                    android:id="@+id/tv_anglers"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/number_anglers"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_ebikers" />
+            <EditText
+                    android:id="@+id/et_num_anglers"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_anglers"
+                    app:layout_constraintStart_toEndOf="@+id/tv_anglers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_anglers" />
+
+            <Button
+                    android:id="@+id/btn_inc_anglers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_anglers"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_anglers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_anglers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_anglers"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_anglers"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_anglers"
+                    app:layout_constraintTop_toTopOf="@+id/tv_anglers"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- Runners -->
+
+            <TextView
+                    android:id="@+id/tv_runners"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/number_runners"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_anglers" />
+            <EditText
+                    android:id="@+id/et_num_runners"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_runners"
+                    app:layout_constraintStart_toEndOf="@+id/tv_runners"
+                    app:layout_constraintTop_toTopOf="@+id/tv_runners" />
+
+            <Button
+                    android:id="@+id/btn_inc_runners"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_runners"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_runners"
+                    app:layout_constraintTop_toTopOf="@+id/tv_runners"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_runners"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_runners"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_runners"
+                    app:layout_constraintTop_toTopOf="@+id/tv_runners"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- Dogs Unleashed -->
+
+            <TextView
+                    android:id="@+id/tv_dogs_unleashed"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:text="@string/number_dogs_unleashed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_runners" />
+            <EditText
+                    android:id="@+id/et_num_dogs_unleashed"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_dogs_unleashed"
+                    app:layout_constraintStart_toEndOf="@+id/tv_dogs_unleashed"
+                    app:layout_constraintTop_toTopOf="@+id/tv_dogs_unleashed" />
+
+            <Button
+                    android:id="@+id/btn_inc_dogs_unleashed"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_dogs_unleashed"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_dogs_unleashed"
+                    app:layout_constraintTop_toTopOf="@+id/tv_dogs_unleashed"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_dogs_unleashed"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_dogs_unleashed"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_runners"
+                    app:layout_constraintTop_toTopOf="@+id/tv_dogs_unleashed"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <!-- Dogs Leashed -->
+            <TextView
+                    android:id="@+id/tv_dogs_leashed"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:ems="10"
+                    android:text="@string/number_dogs_leashed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_dogs_unleashed" />
+            <EditText
+                    android:id="@+id/et_num_dogs_leashed"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_dogs_leashed"
+                    app:layout_constraintStart_toEndOf="@+id/tv_dogs_leashed"
+                    app:layout_constraintTop_toTopOf="@+id/tv_dogs_leashed" />
+
+            <Button
+                    android:id="@+id/btn_inc_dogs_leashed"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_dogs_leashed"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_dogs_leashed"
+                    app:layout_constraintTop_toTopOf="@+id/tv_dogs_leashed"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_dec_dogs_leashed"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_dogs_leashed"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_runners"
+                    app:layout_constraintTop_toTopOf="@+id/tv_dogs_leashed"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- Heading: Services Rendered -->
+            <TextView
+                    android:id="@+id/tv_services_rendered"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:ems="10"
+                    android:text="@string/services_rendered"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_inc_hikers"
+                    app:layout_constraintStart_toStartOf="@+id/tv_hikers"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_dogs_leashed" />
+
+            <!-- Education/contacts -->
+            <TextView
+                    android:id="@+id/tv_education_contacts"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:ems="10"
+                    android:text="@string/education_contracts"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_services_rendered" />
+            <EditText
+                    android:id="@+id/et_num_education_contacts"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_education_contacts"
+                    app:layout_constraintStart_toEndOf="@+id/tv_education_contacts"
+                    app:layout_constraintTop_toTopOf="@+id/tv_education_contacts" />
+
+            <Button
+                    android:id="@+id/btn_dec_education_contacts"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_education_contacts"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_education_contacts"
+                    app:layout_constraintTop_toTopOf="@+id/tv_education_contacts"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_inc_education_contacts"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_education_contacts"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_education_contacts"
+                    app:layout_constraintTop_toTopOf="@+id/tv_education_contacts"
+                    app:layout_constraintVertical_bias="0.476" />
+
+
+            <!-- Directions/Map -->
+            <TextView
+                    android:id="@+id/tv_directions_map"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:ems="10"
+                    android:text="@string/directions_map"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_education_contacts" />
+
+            <EditText
+                    android:id="@+id/et_num_directions_map"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_directions_map"
+                    app:layout_constraintStart_toEndOf="@+id/tv_directions_map"
+                    app:layout_constraintTop_toTopOf="@+id/tv_directions_map" />
+
+            <Button
+                    android:id="@+id/btn_dec_directions_map"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_directions_map"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_directions_map"
+                    app:layout_constraintTop_toTopOf="@+id/tv_directions_map"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_inc_directions_map"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_directions_map"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_directions_map"
+                    app:layout_constraintTop_toTopOf="@+id/tv_directions_map"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <!-- Mechanical -->
+            <TextView
+                    android:id="@+id/tv_mechanical"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:ems="10"
+                    android:text="@string/mechanical_help"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_directions_map" />
+
+            <EditText
+                    android:id="@+id/et_num_mechanical"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_mechanical"
+                    app:layout_constraintStart_toEndOf="@+id/tv_directions_map"
+                    app:layout_constraintTop_toTopOf="@+id/tv_mechanical" />
+
+            <Button
+                    android:id="@+id/btn_dec_mechanical"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_mechanical"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_mechanical"
+                    app:layout_constraintTop_toTopOf="@+id/tv_mechanical"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_inc_mechanical"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_mechanical"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_mechanical"
+                    app:layout_constraintTop_toTopOf="@+id/tv_mechanical"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <!-- First Aid -->
+            <TextView
+                    android:id="@+id/tv_first_aid"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:ems="10"
+                    android:text="@string/first_aid"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_mechanical" />
+
+            <EditText
+                    android:id="@+id/et_first_aid"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_first_aid"
+                    app:layout_constraintStart_toEndOf="@+id/tv_first_aid"
+                    app:layout_constraintTop_toTopOf="@+id/tv_first_aid" />
+
+            <Button
+                    android:id="@+id/btn_dec_first_aid"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_first_aid"
+                    app:layout_constraintStart_toEndOf="@+id/et_num_mechanical"
+                    app:layout_constraintTop_toTopOf="@+id/tv_first_aid"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_inc_first_aid"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_first_aid"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_first_aid"
+                    app:layout_constraintTop_toTopOf="@+id/tv_first_aid"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <!-- Trail work -->
+            <TextView
+                    android:id="@+id/tv_trail_work"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:ems="10"
+                    android:text="@string/trail_work"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_first_aid" />
+
+            <EditText
+                    android:id="@+id/et_trail_work"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_trail_work"
+                    app:layout_constraintStart_toEndOf="@+id/tv_trail_work"
+                    app:layout_constraintTop_toTopOf="@+id/tv_trail_work" />
+
+            <Button
+                    android:id="@+id/btn_dec_trail_work"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/decrement_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_trail_work"
+                    app:layout_constraintStart_toEndOf="@+id/et_trail_work"
+                    app:layout_constraintTop_toTopOf="@+id/tv_trail_work"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <Button
+                    android:id="@+id/btn_inc_trail_work"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/increment_char"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_trail_work"
+                    app:layout_constraintStart_toEndOf="@+id/btn_dec_trail_work"
+                    app:layout_constraintTop_toTopOf="@+id/tv_trail_work"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            <!-- Control Buttons -->
+
+            <Button
+                    android:id="@+id/btn_submit_report"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/submit_report"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_services_rendered"
+                    app:layout_constraintStart_toStartOf="@+id/tv_services_rendered"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_trail_work" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
