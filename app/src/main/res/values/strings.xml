@@ -27,6 +27,13 @@
     <string name="action_bar_clear">Clear</string>
     <string name="action_bar_about">About</string>
 
+    <!-- Bike Patrol Location -->
+    <string name="action_bar_patrol_location">Bike Patrol Location</string>
+    <string name="patrol_location_city">City Patrol</string>
+    <string name="patrol_location_county">County Patrol</string>
+    <string name="patrol_location_usfs">USFS Patrol</string>
+    <string name="patrol_location_valmont">Valmont Bike Park Patrol</string>
+
     <string name="increment_char">+</string>
     <string name="decrement_char">-</string>
     <string name="zero">0</string>

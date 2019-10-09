@@ -1,19 +1,25 @@
 package com.sss.bikepatrolreport;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import static com.sss.bikepatrolreport.TrailSelectionActivity.*;
 
 public class PatrolLocationActivity extends AppCompatActivity
 {
     private final static String TAG = "PatrolLocationActivity";
-    // patrol catagories
+    // patrol categories
 
-    private PatrolCatagory mPatrolCatagoryCity;
-    private PatrolCatagory mPatrolCatagoryCounty;
-    private PatrolCatagory mPatrolCatagoryUSFS;
-    private PatrolCatagory mPatrolCatagoryValmont;
+    private PatrolCategory mPatrolCategoryCity;
+    private PatrolCategory mPatrolCategoryCounty;
+    private PatrolCategory mPatrolCategoryUSFS;
+    private PatrolCategory mPatrolCategoryValmont;
 
 
     /**
@@ -28,9 +34,52 @@ public class PatrolLocationActivity extends AppCompatActivity
 
         // configure the action bar and handle its messages
         ActionBar action_bar = getSupportActionBar();
-        action_bar.setTitle(R.string.action_bar_title);
+        action_bar.setTitle(R.string.action_bar_patrol_location);
 
         initializePatrolTrailData();
+
+        Button btn_city_patrol  = findViewById(R.id.btn_city_patrol);
+        btn_city_patrol.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                handleCityPatrol();
+            }
+        });
+
+
+        Button btn_county_patrol  = findViewById(R.id.btn_county_patrol);
+        btn_county_patrol.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                handleCountyPatrol();
+            }
+        });
+
+
+        Button btn_usfs_patrol  = findViewById(R.id.btn_usfs_patrol);
+        btn_usfs_patrol.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                handleUSFSPatrol();
+            }
+        });
+
+
+        Button btn_valmont_patrol  = findViewById(R.id.btn_valmont_patrol);
+        btn_valmont_patrol.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                handleValmontPatrol();
+            }
+        });
     }
 
 
@@ -89,7 +138,61 @@ public class PatrolLocationActivity extends AppCompatActivity
 
         // Valmont Bike Park Patrol
 
+    }   // end private void initializePatrolTrailData()
 
+
+    /**
+     * Handle user selection of City Patrol Button
+     */
+    private void handleCityPatrol()
+    {
+        Toast.makeText(this, "City Patrol Selected",
+                        Toast.LENGTH_SHORT).show();
+        TrailSelectionActivity(PATROL_TYPE_CITY);
+    }
+
+
+    /**
+     * Handle user selection of County Patrol Button
+     */
+    private void handleCountyPatrol()
+    {
+        Toast.makeText(this, "County Patrol Selected",
+                Toast.LENGTH_SHORT).show();
+        TrailSelectionActivity(PATROL_TYPE_COUNTY);
+    }
+
+
+    /**
+     * Handle user selection of USFS Patrol Button
+     */
+    private void handleUSFSPatrol()
+    {
+        Toast.makeText(this, "USFS Patrol Selected",
+                Toast.LENGTH_SHORT).show();
+        TrailSelectionActivity(PATROL_TYPE_USFS);
+    }
+
+
+    /**
+     * Handle user selection of Valmont Bike Park Patrol Button
+     */
+    private void handleValmontPatrol()
+    {
+        Toast.makeText(this, "Valmont Patrol Selected",
+                Toast.LENGTH_SHORT).show();
+        TrailSelectionActivity(PATROL_TYPE_VALMONT);
+    }
+
+
+    /**
+     * Transition to the trail system display activity
+     */
+    private void TrailSelectionActivity(int patrolType)
+    {
+        Intent intent = new Intent(this, TrailSelectionActivity.class);
+        intent.putExtra(EXTRA_PATROL_TYPE, patrolType);
+        startActivity(intent);
     }
 
 }   // end public class PatrolLocationActivity extends AppCompatActivity

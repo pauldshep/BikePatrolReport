@@ -1,6 +1,6 @@
 package com.sss.bikepatrolreport;
 
-public class PatrolCatagory
+public class PatrolCategory
 {
     String   mPatrolCatagory;
     String   mPatrolLocation;
@@ -9,10 +9,10 @@ public class PatrolCatagory
     /**
      * Constructor
      */
-    public PatrolCatagory(String patrolCatagory, String patrolLocation, String[] mtnBikeTrails)
+    public PatrolCategory(String patrolCatagory, String patrolLocation, String[] mtnBikeTrails)
     {
         mPatrolCatagory = patrolCatagory;
         mPatrolLocation = patrolLocation;
         mMtnBikeTrails  = mtnBikeTrails;
     }
-}   // end public class PatrolCatagory
+}   // end public class Patrol Category

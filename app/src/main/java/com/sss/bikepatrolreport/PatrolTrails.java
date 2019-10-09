@@ -1,7 +1,7 @@
 package com.sss.bikepatrolreport;
 
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 
 /**
@@ -9,8 +9,8 @@ import java.util.Vector;
  */
 public class PatrolTrails
 {
-    private String         mTrailArea;
-    private Vector<String> mTrails;
+    private String            mTrailArea;
+    private ArrayList<String> mTrails;
 
     /**
      * Constructor
@@ -18,7 +18,7 @@ public class PatrolTrails
     public PatrolTrails(String trailArea)
     {
         mTrailArea = trailArea;
-        mTrails    = new Vector<String>();
+        mTrails    = new ArrayList<String>();
     }
 
 
