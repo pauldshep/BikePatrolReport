@@ -14,13 +14,6 @@ import static com.sss.bikepatrolreport.TrailSelectionActivity.*;
 public class PatrolLocationActivity extends AppCompatActivity
 {
     private final static String TAG = "PatrolLocationActivity";
-    // patrol categories
-
-    private PatrolCategory mPatrolCategoryCity;
-    private PatrolCategory mPatrolCategoryCounty;
-    private PatrolCategory mPatrolCategoryUSFS;
-    private PatrolCategory mPatrolCategoryValmont;
-
 
     /**
      * Android lifecycle function onCreate()

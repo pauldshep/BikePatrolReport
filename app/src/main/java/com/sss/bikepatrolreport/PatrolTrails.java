@@ -32,6 +32,28 @@ public class PatrolTrails
 
 
     /**
+     * Get the name of the trail area
+     *
+     * @return trail area name
+     */
+    public String getTrailAreaName()
+    {
+        return mTrailArea;
+    }
+
+
+    /**
+     * Get the list of trails in this trail system
+     *
+     * @return list of trails in the trail system
+     */
+    public ArrayList<String> getTrailList()
+    {
+        return mTrails;
+    }
+
+
+    /**
      * Implement the toString() method
      */
     @Override
