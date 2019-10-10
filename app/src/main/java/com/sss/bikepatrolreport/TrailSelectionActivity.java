@@ -5,9 +5,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,6 +35,12 @@ public class TrailSelectionActivity extends AppCompatActivity
 
     private PatrolType mPatrolType;     // patrol type trail list
 
+
+    /**
+     * Android Life Cycle function: onCreate
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,22 +59,64 @@ public class TrailSelectionActivity extends AppCompatActivity
         ArrayList<PatrolTrails> patrol_trails = mPatrolType.getPatrolTrailSystem();
         for(PatrolTrails patrol_trail_sys : patrol_trails)
         {
-            String            trail_area_name = patrol_trail_sys.getTrailAreaName();
-            ArrayList<String> trail_list      = patrol_trail_sys.getTrailList();
+            String                 trail_area_name = patrol_trail_sys.getTrailAreaName();
+            ArrayList<PatrolTrail> trail_list      = patrol_trail_sys.getTrailList();
 
             TextView tv_trail_area = new TextView(this);
             tv_trail_area.setText(trail_area_name);
             linear_layout.addView(tv_trail_area);
 
-            for(String trail_name : trail_list)
+            for(PatrolTrail patrol_trail : trail_list)
             {
                 CheckBox check_box = new CheckBox(this);
-                check_box.setText(trail_name);
+                check_box.setText(patrol_trail.getTrailName());
                 linear_layout.addView(check_box);
+                patrol_trail.setCheckBoxReference(check_box);
             }
         }
 
     }   // end protected void onCreate(Bundle savedInstanceState)
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////// END ANDROID LIFECYCLE FUNCTIONS /////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    /**
+     * Create toolbar options menu
+     */
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_trail_selection_actionbar_menu, menu);
+        return true;
+    }
+
+
+    /**
+     * Handle action bar menu item selection
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case R.id.action_bar_use:
+                useCurrentTrailSelection();
+                break;
+
+            case R.id.action_bar_clear:
+                Toast.makeText(this, "Clear Selected Trails",
+                        Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+                Toast.makeText(this, "Unsupported Menu Selection",
+                        Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return true;
+    }
 
     /**
      * Get extras from intent that started this activity
@@ -151,43 +203,43 @@ public class TrailSelectionActivity extends AppCompatActivity
         Log.i(TAG, "initCountyPatrolTrailList(): patrol type = " + patrolType);
 
         PatrolTrails trails_hall_ranch = new PatrolTrails("Hall Ranch");
-        trails_hall_ranch.addTrail("Antelope");
-        trails_hall_ranch.addTrail("Bitterbrush");
-        trails_hall_ranch.addTrail("Nelson");
+        trails_hall_ranch.addTrail(new PatrolTrail("Antelope"));
+        trails_hall_ranch.addTrail(new PatrolTrail("Bitterbrush"));
+        trails_hall_ranch.addTrail(new PatrolTrail("Nelson"));
         //Log.i(TAG, trails_hall_ranch.toString());
 
         PatrolTrails trails_heil_ranch = new PatrolTrails("Heil Ranch");
-        trails_heil_ranch.addTrail("Overland");
-        trails_heil_ranch.addTrail("Picture Rock");
-        trails_heil_ranch.addTrail("Ponderosa Loop");
-        trails_heil_ranch.addTrail("Schoolhouse");
-        trails_heil_ranch.addTrail("Wapiti");
-        trails_heil_ranch.addTrail("Wild Turkey");
+        trails_heil_ranch.addTrail(new PatrolTrail("Overland"));
+        trails_heil_ranch.addTrail(new PatrolTrail("Picture Rock"));
+        trails_heil_ranch.addTrail(new PatrolTrail("Ponderosa Loop"));
+        trails_heil_ranch.addTrail(new PatrolTrail("Schoolhouse"));
+        trails_heil_ranch.addTrail(new PatrolTrail("Wapiti"));
+        trails_heil_ranch.addTrail(new PatrolTrail("Wild Turkey"));
         //Log.i(TAG, trails_heil_ranch.toString());
 
         PatrolTrails trails_misc = new PatrolTrails("Misc");
-        trails_misc.addTrail("Betasso Preserve");
-        trails_misc.addTrail("Boulder Canyon");
-        trails_misc.addTrail("Coal Creek Trail");
-        trails_misc.addTrail("Logerman Agriculture Preserve");
-        trails_misc.addTrail("Lobo");
-        trails_misc.addTrail("Mud Lake (Nederland)");
-        trails_misc.addTrail("Niwot Loop Trail");
-        trails_misc.addTrail("Pella");
-        trails_misc.addTrail("Pines to Peak");
-        trails_misc.addTrail("Rock Creek");
-        trails_misc.addTrail("Sherwood Gulch");
+        trails_misc.addTrail(new PatrolTrail("Betasso Preserve"));
+        trails_misc.addTrail(new PatrolTrail("Boulder Canyon"));
+        trails_misc.addTrail(new PatrolTrail("Coal Creek Trail"));
+        trails_misc.addTrail(new PatrolTrail("Logerman Agriculture Preserve"));
+        trails_misc.addTrail(new PatrolTrail("Lobo"));
+        trails_misc.addTrail(new PatrolTrail("Mud Lake (Nederland)"));
+        trails_misc.addTrail(new PatrolTrail("Niwot Loop Trail"));
+        trails_misc.addTrail(new PatrolTrail("Pella"));
+        trails_misc.addTrail(new PatrolTrail("Pines to Peak"));
+        trails_misc.addTrail(new PatrolTrail("Rock Creek"));
+        trails_misc.addTrail(new PatrolTrail("Sherwood Gulch"));
         //Log.i(TAG, trails_misc.toString());
 
         PatrolTrails trails_rabbit_valley = new PatrolTrails("Rabbit Valley");
-        trails_rabbit_valley.addTrail("Eagle Wind Trail");
-        trails_rabbit_valley.addTrail("Indian Mesa");
-        trails_rabbit_valley.addTrail("Little Thompson");
+        trails_rabbit_valley.addTrail(new PatrolTrail("Eagle Wind Trail"));
+        trails_rabbit_valley.addTrail(new PatrolTrail("Indian Mesa"));
+        trails_rabbit_valley.addTrail(new PatrolTrail("Little Thompson"));
         //Log.i(TAG, trails_rabbit_valley.toString());
 
         PatrolTrails trails_walker_ranch = new PatrolTrails("Walker Ranch");
-        trails_walker_ranch.addTrail("Meyers Homestead");
-        trails_walker_ranch.addTrail("Walker Loop");
+        trails_walker_ranch.addTrail(new PatrolTrail("Meyers Homestead"));
+        trails_walker_ranch.addTrail(new PatrolTrail("Walker Loop"));
         //Log.i(TAG, trails_walker_ranch.toString());
 
         mPatrolType = new PatrolType(patrolType);
@@ -215,6 +267,16 @@ public class TrailSelectionActivity extends AppCompatActivity
     private void initValmontPatrolTrailList(String patrolType)
     {
 
+    }
+
+
+    /**
+     * Use the current trail selections
+     */
+    private void useCurrentTrailSelection()
+    {
+        Toast.makeText(this, "Use Current Trail Selection",
+                Toast.LENGTH_SHORT).show();
     }
 
 }   // end public class TrailSelectionActivity extends AppCompatActivity

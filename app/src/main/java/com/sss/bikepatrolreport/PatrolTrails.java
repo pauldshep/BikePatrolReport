@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class PatrolTrails
 {
-    private String            mTrailArea;
-    private ArrayList<String> mTrails;
+    private String                 mTrailArea;
+    private ArrayList<PatrolTrail> mTrails;
 
     /**
      * Constructor
@@ -18,14 +18,14 @@ public class PatrolTrails
     public PatrolTrails(String trailArea)
     {
         mTrailArea = trailArea;
-        mTrails    = new ArrayList<String>();
+        mTrails    = new ArrayList<PatrolTrail>();
     }
 
 
     /**
      * Adds a trail to the internal list
      */
-    public void addTrail(String patrolTrail)
+    public void addTrail(PatrolTrail patrolTrail)
     {
         mTrails.add(patrolTrail);
     }
@@ -47,7 +47,7 @@ public class PatrolTrails
      *
      * @return list of trails in the trail system
      */
-    public ArrayList<String> getTrailList()
+    public ArrayList<PatrolTrail> getTrailList()
     {
         return mTrails;
     }
@@ -62,9 +62,9 @@ public class PatrolTrails
         StringBuilder patrol_trails = new StringBuilder();
         patrol_trails.append("Trail Area: " + mTrailArea + "\n");
 
-        for(String trail : mTrails)
+        for(PatrolTrail patrol_trail : mTrails)
         {
-            patrol_trails.append("  " + trail + "\n");
+            patrol_trails.append("  " + patrol_trail.toString() + "\n");
         }
 
         return patrol_trails.toString();

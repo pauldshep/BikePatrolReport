@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- use current trail selections -->
+    <item
+            android:id="@+id/action_bar_use"
+            android:title="Use"
+            app:showAsAction="never"/>
+
+    <!-- clear all selected trails -->
+    <item
+            android:id="@+id/action_bar_clear"
+            android:title="Clear"
+            app:showAsAction="never"/>
+
+    <!-- abort trail selection and return to... -->
+    <item
+            android:id="@+id/action_bar_save"
+            android:title="Abort"
+            app:showAsAction="never"/>
+
+    <!-- display about information -->
+    <item
+            android:id="@+id/action_bar_about"
+            android:title="@string/action_bar_about"
+            app:showAsAction="never"/>
 
 </menu>
