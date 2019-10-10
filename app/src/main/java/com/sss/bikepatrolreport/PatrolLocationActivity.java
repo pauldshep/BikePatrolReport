@@ -29,7 +29,7 @@ public class PatrolLocationActivity extends AppCompatActivity
         ActionBar action_bar = getSupportActionBar();
         action_bar.setTitle(R.string.action_bar_patrol_location);
 
-        initializePatrolTrailData();
+        //initializePatrolTrailData();
 
         Button btn_city_patrol  = findViewById(R.id.btn_city_patrol);
         btn_city_patrol.setOnClickListener(new View.OnClickListener()

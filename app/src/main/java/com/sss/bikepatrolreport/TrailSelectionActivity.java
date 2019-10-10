@@ -1,6 +1,7 @@
 package com.sss.bikepatrolreport;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,9 +40,9 @@ public class TrailSelectionActivity extends AppCompatActivity
         int patrol_type_id = getExtras();
         String patrol_type_str = setPatrolType(patrol_type_id);
 
-        // display the patrol type
-        TextView tv_patrol_area = findViewById(R.id.tv_patrol_area);
-        tv_patrol_area.setText(patrol_type_str);
+        // display the patrol type in the action bar
+        ActionBar action_bar = getSupportActionBar();
+        action_bar.setTitle(patrol_type_str);
 
         // display the trails in check boxes
         LinearLayout linear_layout = findViewById(R.id.ll_trail_selection);
