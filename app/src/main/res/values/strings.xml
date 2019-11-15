@@ -8,8 +8,8 @@
     <string name="number_ebikers">Number of EBikers</string>
     <string name="number_anglers">Number of Anglers</string>
     <string name="number_runners">Number of Runners</string>
-    <string name="number_dogs_unleashed">Number of Dogs Unleashed</string>
-    <string name="number_dogs_leashed">Number of Dogs Leashed</string>
+    <string name="number_dogs_unleashed">Num of Dogs Unleashed</string>
+    <string name="number_dogs_leashed">Num of Dogs Leashed</string>
     <string name="services_rendered">Services Rendered</string>
     <string name="education_contracts">Education/contacts</string>
     <string name="directions_map">Directions/map</string>

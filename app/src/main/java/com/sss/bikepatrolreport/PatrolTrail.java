@@ -57,6 +57,18 @@ public class PatrolTrail
 
 
     /**
+     * Set the check box state to true(checked) or false(not checked)
+     *
+     * @param isChecked if true set check box state to checked, not
+     *                  checked otherwise
+     */
+    public void setCheckBoxState(boolean isChecked)
+    {
+        mCheckBox.setChecked(isChecked);
+    }
+
+
+    /**
      * Implement the toString() method for this class
      */
     @Override

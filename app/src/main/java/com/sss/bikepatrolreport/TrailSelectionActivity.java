@@ -47,7 +47,7 @@ public class TrailSelectionActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trail_selection);
 
-        int patrol_type_id = getExtras();
+        int    patrol_type_id  = getExtras();
         String patrol_type_str = setPatrolType(patrol_type_id);
 
         // display the patrol type in the action bar
@@ -105,8 +105,7 @@ public class TrailSelectionActivity extends AppCompatActivity
                 break;
 
             case R.id.action_bar_clear:
-                Toast.makeText(this, "Clear Selected Trails",
-                        Toast.LENGTH_SHORT).show();
+                clearCurrentTrailSelection();
                 break;
 
             default:
@@ -272,11 +271,59 @@ public class TrailSelectionActivity extends AppCompatActivity
 
     /**
      * Use the current trail selections
+     *
+     * @return list of selected trails
      */
-    private void useCurrentTrailSelection()
+    private ArrayList<String> useCurrentTrailSelection()
     {
         Toast.makeText(this, "Use Current Trail Selection",
                 Toast.LENGTH_SHORT).show();
-    }
+
+        // find the checked/selected trails
+        ArrayList<String>       selected_trails = new ArrayList<String>();
+        ArrayList<PatrolTrails> patrol_trails   = mPatrolType.getPatrolTrailSystem();
+        for(PatrolTrails patrol_trail_sys : patrol_trails)
+        {
+            ArrayList<PatrolTrail> trail_list = patrol_trail_sys.getTrailList();
+
+            for(PatrolTrail patrol_trail : trail_list)
+            {
+                if(patrol_trail.getCheckBoxState())
+                {
+                    selected_trails.add(patrol_trail.getTrailName());
+                }
+            }
+        }
+
+        Log.i(TAG, "Selected Trails: num = " + selected_trails.size());
+        for(String selected_trail : selected_trails)
+        {
+            Log.i(TAG, "trail = " + selected_trail);
+        }
+
+        return selected_trails;
+    }   // end private ArrayList<String> useCurrentTrailSelection()
+
+
+    /**
+     * Clears the current trail selections
+     */
+    private void clearCurrentTrailSelection()
+    {
+        Toast.makeText(this, "Clearing Current Trail Selection",
+                Toast.LENGTH_SHORT).show();
+
+        // find the checked/selected trails
+        ArrayList<PatrolTrails> patrol_trails   = mPatrolType.getPatrolTrailSystem();
+        for(PatrolTrails patrol_trail_sys : patrol_trails)
+        {
+            ArrayList<PatrolTrail> trail_list = patrol_trail_sys.getTrailList();
+
+            for(PatrolTrail patrol_trail : trail_list)
+            {
+                patrol_trail.setCheckBoxState(false);
+            }
+        }
+    }   // end private ArrayList<String> useCurrentTrailSelection()
 
 }   // end public class TrailSelectionActivity extends AppCompatActivity
