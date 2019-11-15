@@ -16,6 +16,10 @@
     <string name="mechanical_help">Mechanical</string>
     <string name="first_aid">First aid</string>
     <string name="trail_work">Trail work</string>
+    <string name="patrol_timers">Timers</string>
+    <string name="timer_start_btn">Start</string>
+    <string name="timer_stop_btn">Stop</string>
+    <string name="timer_initial_value">00:00:00</string>
 
     <string name="submit_report">Submit</string>
 

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity
     private EditText mNumMechanical;
     private EditText mNumFirstAid;
     private EditText mNumTrailWork;
+
+    private TextView mPatrolTimer;
 
 
 
@@ -329,6 +332,31 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        // the timer
+        mPatrolTimer = findViewById(R.id.tv_elapsed_time);
+
+        Button start_timer = findViewById(R.id.btn_start);
+        start_timer.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+            }
+        });
+
+        Button stop_timer = findViewById(R.id.btn_stop);
+        stop_timer.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+            }
+        });
+
+
+        // submit report button
         Button submit_report = findViewById((R.id.btn_submit_report));
         submit_report.setOnClickListener(new View.OnClickListener()
         {

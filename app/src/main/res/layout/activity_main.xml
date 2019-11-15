@@ -11,8 +11,9 @@
             style="@android:style/Widget.DeviceDefault.ScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="53dp"
-            tools:layout_editor_absoluteY="58dp">
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="-16dp">
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -434,6 +435,7 @@
 
 
             <!-- Heading: Services Rendered -->
+
             <TextView
                     android:id="@+id/tv_services_rendered"
                     android:layout_width="300dp"
@@ -449,6 +451,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_dogs_leashed" />
 
             <!-- Education/contacts -->
+
             <TextView
                     android:id="@+id/tv_education_contacts"
                     android:layout_width="150dp"
@@ -683,7 +686,62 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_trail_work"
                     app:layout_constraintVertical_bias="0.476" />
 
+            <!-- Heading: Timers -->
+
+            <TextView
+                    android:id="@+id/tv_timers"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:ems="10"
+                    android:text="@string/patrol_timers"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_inc_trail_work"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/tv_hikers"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_trail_work" />
+
+            <!-- timer controls -->
+
+            <Button
+                    android:id="@+id/btn_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/timer_start_btn"
+                    app:layout_constraintStart_toStartOf="@+id/tv_timers"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_timers" />
+
+            <TextView
+                    android:id="@+id/tv_elapsed_time"
+                    android:layout_width="75dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:format24Hour="hh:mm:ss"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/timer_initial_value"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_start"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_stop"
+                    app:layout_constraintHorizontal_bias="0.508"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start"
+                    app:layout_constraintTop_toTopOf="@+id/btn_start"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                    android:id="@+id/btn_stop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/timer_stop_btn"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_timers"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_timers" />
+
+
             <!-- Control Buttons -->
+
 
             <Button
                     android:id="@+id/btn_submit_report"
@@ -693,7 +751,8 @@
                     android:text="@string/submit_report"
                     app:layout_constraintEnd_toEndOf="@+id/tv_services_rendered"
                     app:layout_constraintStart_toStartOf="@+id/tv_services_rendered"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_trail_work" />
+                    app:layout_constraintTop_toBottomOf="@+id/btn_start" />
+
 
         </android.support.constraint.ConstraintLayout>
 
