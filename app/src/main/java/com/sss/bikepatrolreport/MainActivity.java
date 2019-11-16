@@ -390,6 +390,10 @@ public class MainActivity extends AppCompatActivity
     {
         switch(item.getItemId())
         {
+            case R.id.action_bar_timer:
+                TimerActivity();
+                break;
+
             case R.id.action_bar_trails:
                 TrailSelectionActivity();
                 break;
@@ -467,6 +471,22 @@ public class MainActivity extends AppCompatActivity
         //        Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, PatrolLocationActivity.class);
+        //EditText editText = (EditText) findViewById(R.id.editText);
+        //String message = editText.getText().toString();
+        //intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
+
+    /**
+     * Transition to the timer activity
+     */
+    private void TimerActivity()
+    {
+        //Toast.makeText(this, "Trail Selection Activity",
+        //        Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, TimerActivity.class);
         //EditText editText = (EditText) findViewById(R.id.editText);
         //String message = editText.getText().toString();
         //intent.putExtra(EXTRA_MESSAGE, message);
