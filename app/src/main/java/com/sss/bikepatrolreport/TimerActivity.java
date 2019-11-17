@@ -1,15 +1,18 @@
 package com.sss.bikepatrolreport;
 
-import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -20,13 +23,18 @@ public class TimerActivity extends AppCompatActivity
 {
     private final static String TAG = "timerActivity";
 
+    private final static Long   SEC_PER_HOUR = 3600L;
+    private final static Long   SEC_PER_MIN  =   60L;
+    private final static Long   MSEC_PER_SEC = 1000L;
+
     private final static String PATROL_TIMER_STATE = "patrol_timer_state";
     private final static String PATROL_TIMER_START = "patrol_timer_start";
     private final static String PATROL_TIMER_STOP  = "patrol_timer_stop";
 
     private SharedPreferences.Editor mSharedPrefEditor;
 
-    private EditText mEditTextElapsed;
+    private EditText          mEditTextElapsed;
+    private SharedPreferences mSharedPreferences;
 
     /**
      * Implements the android lifecycle onCreate function
@@ -37,13 +45,12 @@ public class TimerActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+        Log.i(TAG, "onCreate()");
 
         // get access to persistent timer settings
-        Context           app_context = getApplicationContext();
-        SharedPreferences shared_pref = getDefaultSharedPreferences(app_context);
-        mSharedPrefEditor             = shared_pref.edit();
-
-        mEditTextElapsed = findViewById(R.id.editText_elapsed_time);
+        mSharedPreferences = getDefaultSharedPreferences(getApplicationContext());
+        mSharedPrefEditor  = mSharedPreferences.edit();
+        mEditTextElapsed   = findViewById(R.id.et_elapsed_time);
 
         Button button_start = findViewById(R.id.button_start);
         button_start.setOnClickListener(new View.OnClickListener()
@@ -65,56 +72,155 @@ public class TimerActivity extends AppCompatActivity
             }
         });
 
-        // start the update display thread
-        new Thread(new UpdateDisplayThread()).start();
+        // initialize display
+        initializeDisplay();
 
+        // start the update display thread
+        updateAfterDelay();
     }   // end onCreate()
 
 
-        ////////////////////////////////////////////////////////////////////////
-        /////////////////////// PRIVATE MEMBER FUNCTIONS ///////////////////////
-        ////////////////////////////////////////////////////////////////////////
-        /**
-         * Starts the timer if its not already running.
-         */
-        private void startTimer()
-        {
-            Toast.makeText(this, "Starting Timer", Toast.LENGTH_LONG).show();
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////////////// PRIVATE MEMBER FUNCTIONS /////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    /**
+     * Initialize the timer display
+     */
+    private void initializeDisplay()
+    {
+        // initialize the start date
+        Date             start_date  = new Date(getTimerStart());
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        String           date_str    = date_format.format(start_date);
+        EditText         et_start_date = findViewById(R.id.et_start_date);
+        et_start_date.setText(date_str);
 
-            if(getTimerState())
+        // initialize the start time
+        date_format = new SimpleDateFormat("hh:mm:ss a", Locale.US);
+        String time_str = date_format.format(start_date);
+        EditText et_start_time = findViewById(R.id.et_start_time);
+        et_start_time.setText(time_str);
+
+        // initialize the elapsed time
+        updateTimerDisplay();
+
+    }   // private void initializeDisplay()
+
+
+    /**
+     * Update the time display after a specified delay
+     */
+    private void updateAfterDelay()
+    {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
             {
-                // timer is running, don't do anything
+                // update the display after 500ms
+                updateTimerDisplay();
             }
-            else
-            {
-                // timer is not running, start it
-                long time_stamp = (new Date()).getTime();
-                setTimerStart(time_stamp);
-                setTimerState(true);
-            }
+        }, 500);
+    }
+
+
+    /**
+     * Update the timer display
+     */
+    private void updateTimerDisplay()
+    {
+        Log.i(TAG, "updateTimerDisplay()");
+
+        Long    elap_secs;
+        Long    timer_curr;
+        Long    timer_start = getTimerStart();
+        boolean timer_state = getTimerState();
+
+        if(timer_state)
+        {
+            // here the timer is running
+            timer_curr  = (new Date()).getTime();
+            elap_secs   = (timer_curr - timer_start) / 1000;
+        }
+        else
+        {
+            // here the timer is not running
+            timer_curr = getTimerStop();
+            elap_secs  = (timer_curr - timer_start) / 1000;
         }
 
+        mEditTextElapsed.setText(formatElapsedTime(elap_secs));
+        Log.i(TAG, "Timer: state = " + timer_state +
+                   ", start = "      + (timer_start / 1000) +
+                   ", current = "    + (timer_curr / 1000)  +
+                   ", elapsed = "    + elap_secs);
 
-        /**
-         * Stops the timer if its running
-         */
-        private void stopTimer ()
+        updateAfterDelay();
+    }   // end private void updateTimerDisplay()
+
+
+    /**
+     * Formats the elapsed time string to the format hh::mm:ss
+     * @param elapsedTimeSec elapsed time in seconds to format
+     * @return formatted time string
+     */
+    private String formatElapsedTime(Long elapsedTimeSec)
+    {
+        Long elap_hours = elapsedTimeSec / SEC_PER_HOUR;
+        Long remain_sec = elapsedTimeSec % SEC_PER_HOUR;
+        Long elap_min   = remain_sec     / SEC_PER_MIN;
+        Long elap_sec   = remain_sec     % SEC_PER_MIN;
+
+        return String.format(Locale.US, "%02d:%02d:%02d",
+                elap_hours, elap_min, elap_sec);
+    }
+
+
+    /**
+     * Starts the timer if its not already running.
+     */
+    private void startTimer()
+    {
+        if(getTimerState())
         {
-            Toast.makeText(this, "Stopping Timer", Toast.LENGTH_LONG).show();
-
-            if(getTimerState())
-            {
-                // timer is running, stop the timer
-                long time_stamp = (new Date()).getTime();
-                setTimerStop(time_stamp);
-                setTimerState(false);
-            }
-            else
-            {
-                // timer is not running don't do anything
-            }
-
+            // timer is running, don't do anything
+            Toast.makeText(this, "Timer is Already Running", Toast.LENGTH_SHORT).show();
         }
+        else
+        {
+            // timer is not running, start it
+            Toast.makeText(this, "Starting Timer", Toast.LENGTH_SHORT).show();
+            long time_stamp = (new Date()).getTime();
+            setTimerStart(time_stamp);
+            setTimerState(true);
+            initializeDisplay();
+        }
+    }
+
+
+    /**
+     * Stops the timer if its running
+     */
+    private void stopTimer ()
+    {
+
+
+        if(getTimerState())
+        {
+            // timer is running, stop the timer
+            Toast.makeText(this, "Stopping Timer", Toast.LENGTH_SHORT).show();
+            long time_stamp = (new Date()).getTime();
+            setTimerStop(time_stamp);
+            setTimerState(false);
+        }
+        else
+        {
+            // timer is not running don't do anything
+            Toast.makeText(this, "Timer is Not Running", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 
     /**
@@ -123,9 +229,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private boolean getTimerState()
     {
-        Context           app_context = getApplicationContext();
-        SharedPreferences shared_pref = getDefaultSharedPreferences(app_context);
-        return shared_pref.getBoolean(PATROL_TIMER_STATE, false);
+        return mSharedPreferences.getBoolean(PATROL_TIMER_STATE, false);
     }
 
 
@@ -136,11 +240,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private void setTimerState(boolean timerState)
     {
-        Context           app_context = getApplicationContext();
-        SharedPreferences shared_pref = getDefaultSharedPreferences(app_context);
-        SharedPreferences.Editor pref_editor = shared_pref.edit();
-        pref_editor.putBoolean(PATROL_TIMER_STATE, timerState);
-        pref_editor.commit();
+        mSharedPrefEditor.putBoolean(PATROL_TIMER_STATE, timerState).apply();
     }
 
 
@@ -151,9 +251,8 @@ public class TimerActivity extends AppCompatActivity
      */
     private long getTimerStart()
     {
-        Context           app_context = getApplicationContext();
-        SharedPreferences shared_pref = getDefaultSharedPreferences(app_context);
-        return shared_pref.getLong(PATROL_TIMER_START, 0);
+        long default_start = new Date().getTime();
+        return mSharedPreferences.getLong(PATROL_TIMER_START, default_start);
     }
 
 
@@ -164,11 +263,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private void setTimerStart(long timerStart)
     {
-        Context           app_context = getApplicationContext();
-        SharedPreferences shared_pref = getDefaultSharedPreferences(app_context);
-        SharedPreferences.Editor pref_editor = shared_pref.edit();
-        pref_editor.putLong(PATROL_TIMER_START, timerStart);
-        pref_editor.commit();
+        mSharedPrefEditor.putLong(PATROL_TIMER_START, timerStart).apply();
     }
 
 
@@ -179,9 +274,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private long getTimerStop()
     {
-        Context           app_context = getApplicationContext();
-        SharedPreferences shared_pref = getDefaultSharedPreferences(app_context);
-        return shared_pref.getLong(PATROL_TIMER_STOP, 0);
+        return mSharedPreferences.getLong(PATROL_TIMER_STOP, 0);
     }
 
 
@@ -192,69 +285,13 @@ public class TimerActivity extends AppCompatActivity
      */
     private void setTimerStop(long timerStop)
     {
-        Context           app_context = getApplicationContext();
-        SharedPreferences shared_pref = getDefaultSharedPreferences(app_context);
-        SharedPreferences.Editor pref_editor = shared_pref.edit();
-        pref_editor.putLong(PATROL_TIMER_START, timerStop);
-        pref_editor.commit();
-    }
-
-
-    /**
-     * Update the timer display
-     */
-    private void updateTimerDisplay()
-    {
-        if(getTimerState())
-        {
-            // here the timer is running
-            Long timer_start = getTimerStart();
-            Long timer_curr  = (new Date()).getTime();
-            Long elap_secs   = (timer_curr - timer_start) / 1000;
-            mEditTextElapsed.setText(elap_secs.toString());
-        }
-        else
-        {
-            // here the timer is not running
-            Long timer_start = getTimerStart();
-            Long timer_curr  = getTimerStop();
-            Long elap_secs   = (timer_curr - timer_start) / 1000;
-            mEditTextElapsed.setText(elap_secs.toString());
-        }
+        mSharedPrefEditor.putLong(PATROL_TIMER_STOP, timerStop).apply();
     }
 
 
     ////////////////////////////////////////////////////////////////////////////
     ///////////////////////////// INTERNAL CLASSES /////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
-    /**
-     * Class UpdateDisplay.  Updates the elapsed time display in a background
-     * thread.
-     */
-    class UpdateDisplayThread implements Runnable
-    {
-        public boolean update_loop;
 
-        @Override
-        public void run()
-        {
-            update_loop = true;
-
-            while(update_loop)
-            {
-                updateTimerDisplay();
-
-                try
-                {
-                    Thread.sleep(500);
-                }
-                catch(InterruptedException ie)
-                {
-                    ie.printStackTrace();
-                }
-            }
-
-        }
-    }   // end class UpdateDisplayThread implements Runnable
 
 }   // end public class TimerActivity extends AppCompatActivity
