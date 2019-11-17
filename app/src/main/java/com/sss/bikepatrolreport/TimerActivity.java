@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+import static com.sss.bikepatrolreport.UtilSharedPreferences.*;
 
 /**
  * Class TimerActivity.  Encapsulates Bike Patrol report timing functions
@@ -27,14 +28,11 @@ public class TimerActivity extends AppCompatActivity
     private final static Long   SEC_PER_MIN  =   60L;
     private final static Long   MSEC_PER_SEC = 1000L;
 
-    private final static String PATROL_TIMER_STATE = "patrol_timer_state";
-    private final static String PATROL_TIMER_START = "patrol_timer_start";
-    private final static String PATROL_TIMER_STOP  = "patrol_timer_stop";
-
-    private SharedPreferences.Editor mSharedPrefEditor;
+    //private SharedPreferences.Editor mSharedPrefEditor;
+    private UtilSharedPreferences    mSharedPreference;
 
     private EditText          mEditTextElapsed;
-    private SharedPreferences mSharedPreferences;
+    //private SharedPreferences mSharedPreferences;
 
     /**
      * Implements the android lifecycle onCreate function
@@ -48,8 +46,9 @@ public class TimerActivity extends AppCompatActivity
         Log.i(TAG, "onCreate()");
 
         // get access to persistent timer settings
-        mSharedPreferences = getDefaultSharedPreferences(getApplicationContext());
-        mSharedPrefEditor  = mSharedPreferences.edit();
+        //mSharedPreferences = getDefaultSharedPreferences(getApplicationContext());
+        //mSharedPrefEditor  = mSharedPreferences.edit();
+        mSharedPreference  = new UtilSharedPreferences(getApplicationContext());
         mEditTextElapsed   = findViewById(R.id.et_elapsed_time);
 
         Button button_start = findViewById(R.id.button_start);
@@ -229,7 +228,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private boolean getTimerState()
     {
-        return mSharedPreferences.getBoolean(PATROL_TIMER_STATE, false);
+        return mSharedPreference.getBoolean(PATROL_TIMER_STATE, false);
     }
 
 
@@ -240,7 +239,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private void setTimerState(boolean timerState)
     {
-        mSharedPrefEditor.putBoolean(PATROL_TIMER_STATE, timerState).apply();
+        mSharedPreference.putBoolean(PATROL_TIMER_STATE, timerState);
     }
 
 
@@ -252,7 +251,7 @@ public class TimerActivity extends AppCompatActivity
     private long getTimerStart()
     {
         long default_start = new Date().getTime();
-        return mSharedPreferences.getLong(PATROL_TIMER_START, default_start);
+        return mSharedPreference.getLong(PATROL_TIMER_START, default_start);
     }
 
 
@@ -263,7 +262,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private void setTimerStart(long timerStart)
     {
-        mSharedPrefEditor.putLong(PATROL_TIMER_START, timerStart).apply();
+        mSharedPreference.putLong(PATROL_TIMER_START, timerStart);
     }
 
 
@@ -274,7 +273,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private long getTimerStop()
     {
-        return mSharedPreferences.getLong(PATROL_TIMER_STOP, 0);
+        return mSharedPreference.getLong(PATROL_TIMER_STOP, 0);
     }
 
 
@@ -285,7 +284,7 @@ public class TimerActivity extends AppCompatActivity
      */
     private void setTimerStop(long timerStop)
     {
-        mSharedPrefEditor.putLong(PATROL_TIMER_STOP, timerStop).apply();
+        mSharedPreference.putLong(PATROL_TIMER_STOP, timerStop);
     }
 
 

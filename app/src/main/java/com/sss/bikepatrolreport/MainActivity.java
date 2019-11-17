@@ -1,6 +1,7 @@
 package com.sss.bikepatrolreport;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,9 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.sss.bikepatrolreport.UtilSharedPreferences.*;
+
 public class MainActivity extends AppCompatActivity
 {
-    private final static String TAG = "MainActivity";
+    private final static String TAG               = "MainActivity";
+    private final static String VALUE_ZERO_STRING = "0";
 
     private EditText mNumHikers;
     private EditText mNumEquestrians;
@@ -31,8 +35,7 @@ public class MainActivity extends AppCompatActivity
     private EditText mNumFirstAid;
     private EditText mNumTrailWork;
 
-    private TextView mPatrolTimer;
-
+    private UtilSharedPreferences mSharedPreference;
 
 
     @Override
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity
         // configure the action bar and handle its messages
         ActionBar action_bar = getSupportActionBar();
         action_bar.setTitle(R.string.action_bar_title);
+
+        mSharedPreference = new UtilSharedPreferences(getApplicationContext());
 
         // number hikers
         mNumHikers          = findViewById(R.id.et_num_hikers);
@@ -332,29 +337,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // the timer
-        mPatrolTimer = findViewById(R.id.tv_elapsed_time);
-
-        Button start_timer = findViewById(R.id.btn_start);
-        start_timer.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-
-            }
-        });
-
-        Button stop_timer = findViewById(R.id.btn_stop);
-        stop_timer.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-
-            }
-        });
-
 
         // submit report button
         Button submit_report = findViewById((R.id.btn_submit_report));
@@ -390,6 +372,14 @@ public class MainActivity extends AppCompatActivity
     {
         switch(item.getItemId())
         {
+            case R.id.action_bar_save:
+                saveAllSettings();
+                break;
+
+            case R.id.action_bar_clear:
+                clearAllSettings();
+                break;
+
             case R.id.action_bar_timer:
                 TimerActivity();
                 break;
@@ -417,8 +407,38 @@ public class MainActivity extends AppCompatActivity
     ///////////////////////// PRIVATE MEMBER FUNCTIONS /////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     /**
-     *
+     * Save all settings
      */
+    private void saveAllSettings()
+    {
+        mSharedPreference.putString(SEEN_NUM_HIKERS,      mNumHikers.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_EQUESTRIANS, mNumEquestrians.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_BIKERS,      mNumBikers.getText().toString());
+
+    }
+
+
+    /**
+     * Clear all settings
+     */
+    private void clearAllSettings()
+    {
+        mNumHikers.setText(VALUE_ZERO_STRING);
+        mNumEquestrians.setText(VALUE_ZERO_STRING);
+        mNumBikers.setText(VALUE_ZERO_STRING);
+        mNumEBikers.setText(VALUE_ZERO_STRING);
+        mNumAnglers.setText(VALUE_ZERO_STRING);
+        mNumRunners.setText(VALUE_ZERO_STRING);
+        mNumDogsUnleashed.setText(VALUE_ZERO_STRING);
+        mNumDogsLeashed.setText(VALUE_ZERO_STRING);
+        mNumEducationContacts.setText(VALUE_ZERO_STRING);
+        mNumDirectionsMap.setText(VALUE_ZERO_STRING);
+        mNumMechanical.setText(VALUE_ZERO_STRING);
+        mNumFirstAid.setText(VALUE_ZERO_STRING);
+        mNumTrailWork.setText(VALUE_ZERO_STRING);
+
+        Toast.makeText(this, "All Settings Cleared", Toast.LENGTH_SHORT).show();
+    }
 
 
     /**
