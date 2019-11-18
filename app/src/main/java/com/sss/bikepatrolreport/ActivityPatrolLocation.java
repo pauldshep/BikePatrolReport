@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import static com.sss.bikepatrolreport.TrailSelectionActivity.*;
+import static com.sss.bikepatrolreport.ActivityTrailSelection.*;
 
-public class PatrolLocationActivity extends AppCompatActivity
+public class ActivityPatrolLocation extends AppCompatActivity
 {
-    private final static String TAG = "PatrolLocationActivity";
+    private final static String TAG = "ActivityPatrolLocation";
 
     /**
      * Android lifecycle function onCreate()
@@ -183,9 +182,9 @@ public class PatrolLocationActivity extends AppCompatActivity
      */
     private void TrailSelectionActivity(int patrolType)
     {
-        Intent intent = new Intent(this, TrailSelectionActivity.class);
+        Intent intent = new Intent(this, ActivityTrailSelection.class);
         intent.putExtra(EXTRA_PATROL_TYPE, patrolType);
         startActivity(intent);
     }
 
-}   // end public class PatrolLocationActivity extends AppCompatActivity
+}   // end public class ActivityPatrolLocation extends AppCompatActivity

@@ -16,12 +16,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * Class TrailSelectionActivity: allows the user to select the trails
+ * Class ActivityTrailSelection: allows the user to select the trails
  * patrolled from a list associated with the specified patrol type.
  */
-public class TrailSelectionActivity extends AppCompatActivity
+public class ActivityTrailSelection extends AppCompatActivity
 {
-    private final static String TAG = "TrailSelectionActivity";
+    private final static String TAG = "ActivityTrailSelection";
 
     // flag for the patrol types listed below
     public final static String EXTRA_PATROL_TYPE = "extra_patrol_type";
@@ -326,4 +326,4 @@ public class TrailSelectionActivity extends AppCompatActivity
         }
     }   // end private ArrayList<String> useCurrentTrailSelection()
 
-}   // end public class TrailSelectionActivity extends AppCompatActivity
+}   // end public class ActivityTrailSelection extends AppCompatActivity

@@ -9,10 +9,11 @@
             android:roundIcon="@mipmap/ic_launcher_round_patrol"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".TimerActivity"></activity>
-        <activity android:name=".TrailSelectionActivity" />
-        <activity android:name=".PatrolLocationActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ActivityAppSettings"></activity>
+        <activity android:name=".ActivityTimer" />
+        <activity android:name=".ActivityTrailSelection" />
+        <activity android:name=".ActivityPatrolLocation" />
+        <activity android:name=".ActivityMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

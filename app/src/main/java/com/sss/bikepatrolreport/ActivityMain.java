@@ -1,7 +1,6 @@
 package com.sss.bikepatrolreport;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,14 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import static com.sss.bikepatrolreport.UtilSharedPreferences.*;
 
-public class MainActivity extends AppCompatActivity
+public class ActivityMain extends AppCompatActivity
 {
-    private final static String TAG               = "MainActivity";
+    private final static String TAG               = "ActivityMain";
     private final static String VALUE_ZERO_STRING = "0";
 
     private EditText mNumHikers;
@@ -345,7 +343,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                SubmitActivityReport();
+                submitActivityReport();
             }
 
         });
@@ -365,27 +363,36 @@ public class MainActivity extends AppCompatActivity
 
 
     /**
-     * Handle action bar menu item selection
+     * Handle action bar menu item selection.  Bar menu is defined in
+     * activity_actionbar_menu.xml.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch(item.getItemId())
         {
-            case R.id.action_bar_save:
-                saveAllSettings();
+            case R.id.action_bar_timer:
+                timerActivity();
+                break;
+
+            case R.id.action_bar_settings:
+                settingsActivity();
+                break;
+
+            case R.id.action_bar_trails:
+                trailSelectionActivity();
                 break;
 
             case R.id.action_bar_clear:
                 clearAllSettings();
                 break;
 
-            case R.id.action_bar_timer:
-                TimerActivity();
+            case R.id.action_bar_save:
+                saveAllSettings();
                 break;
 
-            case R.id.action_bar_trails:
-                TrailSelectionActivity();
+            case R.id.action_bar_recall:
+                getAllSettings();
                 break;
 
             case R.id.action_bar_about:
@@ -407,14 +414,46 @@ public class MainActivity extends AppCompatActivity
     ///////////////////////// PRIVATE MEMBER FUNCTIONS /////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     /**
-     * Save all settings
+     * Saves all settings to default shared preferences.
      */
     private void saveAllSettings()
     {
-        mSharedPreference.putString(SEEN_NUM_HIKERS,      mNumHikers.getText().toString());
-        mSharedPreference.putString(SEEN_NUM_EQUESTRIANS, mNumEquestrians.getText().toString());
-        mSharedPreference.putString(SEEN_NUM_BIKERS,      mNumBikers.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_HIKERS,         mNumHikers.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_EQUESTRIANS,    mNumEquestrians.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_BIKERS,         mNumBikers.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_EBIKERS,        mNumEBikers.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_ANGLERS,        mNumAnglers.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_RUNNERS,        mNumRunners.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_DOGS_UNLEASHED, mNumDogsUnleashed.getText().toString());
+        mSharedPreference.putString(SEEN_NUM_DOGS_LEASHED,   mNumDogsLeashed.getText().toString());
 
+        mSharedPreference.putString(SERVICES_EDUCATION,      mNumEducationContacts.getText().toString());
+        mSharedPreference.putString(SERVICES_DIRECTIONS,     mNumDirectionsMap.getText().toString());
+        mSharedPreference.putString(SERVICES_MECHANICAL,     mNumMechanical.getText().toString());
+        mSharedPreference.putString(SERVICES_FIRST_AID,      mNumFirstAid.getText().toString());
+        mSharedPreference.putString(SERVICES_TRAIL_WORK,     mNumTrailWork.getText().toString());
+    }
+
+
+    /**
+     * Get all settings from shared preferences and set the associated EditText
+     */
+    private void getAllSettings()
+    {
+        mNumHikers.setText(       mSharedPreference.getString(SEEN_NUM_HIKERS,         VALUE_ZERO_STRING));
+        mNumEquestrians.setText(  mSharedPreference.getString(SEEN_NUM_EQUESTRIANS,    VALUE_ZERO_STRING));
+        mNumBikers.setText(       mSharedPreference.getString(SEEN_NUM_BIKERS,         VALUE_ZERO_STRING));
+        mNumEBikers.setText(      mSharedPreference.getString(SEEN_NUM_EBIKERS,        VALUE_ZERO_STRING));
+        mNumAnglers.setText(      mSharedPreference.getString(SEEN_NUM_ANGLERS,        VALUE_ZERO_STRING));
+        mNumRunners.setText(      mSharedPreference.getString(SEEN_NUM_RUNNERS,        VALUE_ZERO_STRING));
+        mNumDogsUnleashed.setText(mSharedPreference.getString(SEEN_NUM_DOGS_UNLEASHED, VALUE_ZERO_STRING));
+        mNumDogsLeashed.setText(  mSharedPreference.getString(SEEN_NUM_DOGS_LEASHED,   VALUE_ZERO_STRING));
+
+        mNumEducationContacts.setText(mSharedPreference.getString(SERVICES_EDUCATION,  VALUE_ZERO_STRING));
+        mNumDirectionsMap.setText(    mSharedPreference.getString(SERVICES_DIRECTIONS, VALUE_ZERO_STRING));
+        mNumMechanical.setText(       mSharedPreference.getString(SERVICES_MECHANICAL, VALUE_ZERO_STRING));
+        mNumFirstAid.setText(         mSharedPreference.getString(SERVICES_FIRST_AID,  VALUE_ZERO_STRING));
+        mNumTrailWork.setText(        mSharedPreference.getString(SERVICES_TRAIL_WORK, VALUE_ZERO_STRING));
     }
 
 
@@ -474,7 +513,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * Submits an activity report after checking for problems
      */
-    private void SubmitActivityReport()
+    private void submitActivityReport()
     {
         Toast.makeText(this,
                 "Activity Report Submitted",
@@ -485,12 +524,12 @@ public class MainActivity extends AppCompatActivity
     /**
      * Transition to the trail selection activity
      */
-    private void TrailSelectionActivity()
+    private void trailSelectionActivity()
     {
         //Toast.makeText(this, "Trail Selection Activity",
         //        Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, PatrolLocationActivity.class);
+        Intent intent = new Intent(this, ActivityPatrolLocation.class);
         //EditText editText = (EditText) findViewById(R.id.editText);
         //String message = editText.getText().toString();
         //intent.putExtra(EXTRA_MESSAGE, message);
@@ -501,15 +540,25 @@ public class MainActivity extends AppCompatActivity
     /**
      * Transition to the timer activity
      */
-    private void TimerActivity()
+    private void timerActivity()
     {
         //Toast.makeText(this, "Trail Selection Activity",
         //        Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, TimerActivity.class);
+        Intent intent = new Intent(this, ActivityTimer.class);
         //EditText editText = (EditText) findViewById(R.id.editText);
         //String message = editText.getText().toString();
         //intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
-}   // end public class MainActivity extends AppCompatActivity
+
+
+    /**
+     * Transition to the settings activity
+     */
+    private void settingsActivity()
+    {
+        Intent intent = new Intent(this, ActivityAppSettings.class);
+        startActivity(intent);
+    }
+}   // end public class ActivityMain extends AppCompatActivity

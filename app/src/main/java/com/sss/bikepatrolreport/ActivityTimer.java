@@ -18,9 +18,9 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static com.sss.bikepatrolreport.UtilSharedPreferences.*;
 
 /**
- * Class TimerActivity.  Encapsulates Bike Patrol report timing functions
+ * Class ActivityTimer.  Encapsulates Bike Patrol report timing functions
  */
-public class TimerActivity extends AppCompatActivity
+public class ActivityTimer extends AppCompatActivity
 {
     private final static String TAG = "timerActivity";
 
@@ -293,4 +293,4 @@ public class TimerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
 
-}   // end public class TimerActivity extends AppCompatActivity
+}   // end public class ActivityTimer extends AppCompatActivity
