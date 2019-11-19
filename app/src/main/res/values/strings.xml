@@ -42,4 +42,10 @@
     <string name="increment_char">+</string>
     <string name="decrement_char">-</string>
     <string name="zero">0</string>
+
+    <!-- APP Settings Activity -->
+    <string name="settings_action_bar_title">Bike Patrol Report Settings</string>
+    <string name="default_email_address">pauldshep@gmail.com</string>
+
+
 </resources>

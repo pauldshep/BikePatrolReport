@@ -33,6 +33,9 @@ public class UtilSharedPreferences
     public final static String SERVICES_FIRST_AID      = "services_first_aid";
     public final static String SERVICES_TRAIL_WORK     = "services_trail_work";
 
+    // general app configuration
+    public final static String CONFIG_EMAIL            = "config_email";
+
     private SharedPreferences        mSharedPreferences;
     private SharedPreferences.Editor mSharedPrefEditor;
 

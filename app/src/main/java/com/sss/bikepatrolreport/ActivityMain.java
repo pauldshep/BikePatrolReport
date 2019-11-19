@@ -8,9 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
 
 import static com.sss.bikepatrolreport.UtilSharedPreferences.*;
 
@@ -34,6 +32,7 @@ public class ActivityMain extends AppCompatActivity
     private EditText mNumTrailWork;
 
     private UtilSharedPreferences mSharedPreference;
+    private boolean               mInputLocked;
 
 
     @Override
@@ -47,6 +46,7 @@ public class ActivityMain extends AppCompatActivity
         action_bar.setTitle(R.string.action_bar_title);
 
         mSharedPreference = new UtilSharedPreferences(getApplicationContext());
+        mInputLocked      = false;
 
         // number hikers
         mNumHikers          = findViewById(R.id.et_num_hikers);
@@ -348,6 +348,25 @@ public class ActivityMain extends AppCompatActivity
 
         });
 
+
+        // user input lock switch
+        Switch user_input_lock = findViewById(R.id.sw_lock_input);
+        user_input_lock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked)
+            {
+                if(isChecked)
+                {
+                    mInputLocked = true;
+                }
+                else
+                {
+                    mInputLocked = false;
+                }
+            }
+        });
+
     }   // end onCreate()
 
 
@@ -490,6 +509,11 @@ public class ActivityMain extends AppCompatActivity
     private void incDecEditText(EditText editText, int inc_dec)
     {
         int int_val;
+
+        if(mInputLocked)
+        {
+            return;
+        }
 
         try
         {
