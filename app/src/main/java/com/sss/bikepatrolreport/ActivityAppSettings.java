@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import static com.sss.bikepatrolreport.UtilSharedPreferences.CONFIG_EMAIL;
+import static com.sss.bikepatrolreport.UtilSharedPreferences.EMAIL_ADDRESS;
 import static com.sss.bikepatrolreport.UtilSharedPreferences.SEEN_NUM_HIKERS;
 
 public class ActivityAppSettings extends AppCompatActivity
@@ -49,7 +49,7 @@ public class ActivityAppSettings extends AppCompatActivity
      */
     private void getAppSettings()
     {
-        mEmailAddr.setText(mSharedPreference.getString(CONFIG_EMAIL, "pauldshep@gmail.com"));
+        mEmailAddr.setText(mSharedPreference.getString(EMAIL_ADDRESS, "pauldshep@gmail.com"));
     }
 
     /**
@@ -57,7 +57,7 @@ public class ActivityAppSettings extends AppCompatActivity
      */
     private void useAppSettings()
     {
-        mSharedPreference.putString(CONFIG_EMAIL, mEmailAddr.getText().toString());
+        mSharedPreference.putString(EMAIL_ADDRESS, mEmailAddr.getText().toString());
     }
 
 }   // end public class ActivityAppSettings extends AppCompatActivity

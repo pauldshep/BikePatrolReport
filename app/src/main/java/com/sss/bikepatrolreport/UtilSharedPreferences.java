@@ -34,7 +34,19 @@ public class UtilSharedPreferences
     public final static String SERVICES_TRAIL_WORK     = "services_trail_work";
 
     // general app configuration
-    public final static String CONFIG_EMAIL            = "config_email";
+    public final static String USER_FULL_NAME          = "user_full_name";
+    public final static String USER_ID                 = "user_id";
+    public final static String USER_PASSWORD           = "user_password";
+    public final static String EMAIL_TO                = "email_to";
+    public final static String EMAIL_ADDRESS           = "email_address";
+    public final static String EMAIL_SUBJECT           = "email_subject";
+
+    public final static String DEF_USER_FULL_NAME      = "User Name";
+    public final static String DEF_USER_ID             = "userid";
+    public final static String DEF_USER_PASSWORD       = "password";
+    public final static String DEF_EMAIL_TO            = "email to name";
+    public final static String DEF_EMAIL_ADDRESS       = "email@address.com";
+    public final static String DEF_EMAIL_SUBJECT       = "Bike Patrol Report";
 
     private SharedPreferences        mSharedPreferences;
     private SharedPreferences.Editor mSharedPrefEditor;

@@ -535,17 +535,6 @@ public class ActivityMain extends AppCompatActivity
 
 
     /**
-     * Submits an activity report after checking for problems
-     */
-    private void submitActivityReport()
-    {
-        Toast.makeText(this,
-                "Activity Report Submitted",
-                Toast.LENGTH_LONG).show();
-    }
-
-
-    /**
      * Transition to the trail selection activity
      */
     private void trailSelectionActivity()
@@ -583,6 +572,17 @@ public class ActivityMain extends AppCompatActivity
     private void settingsActivity()
     {
         Intent intent = new Intent(this, ActivityAppSettings.class);
+        startActivity(intent);
+    }
+
+
+    /**
+     * Transition to the report activity
+     */
+    private void submitActivityReport()
+    {
+        saveAllSettings();
+        Intent intent = new Intent(this, ActivityPatrolReport.class);
         startActivity(intent);
     }
 }   // end public class ActivityMain extends AppCompatActivity
